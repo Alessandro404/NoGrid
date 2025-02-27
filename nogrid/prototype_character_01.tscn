@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://brsrx7x43lwi5"]
+
+[ext_resource type="Script" path="res://scenes/prototype/prototype_character_01.gd" id="1_3ic4b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uf4rv"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_m8fsh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdfjv"]
+radius = 0.4
+height = 1.6
+
+[node name="PrototypeCharacter01" type="CharacterBody3D"]
+script = ExtResource("1_3ic4b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_uf4rv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265693, -0.391466)
+mesh = SubResource("SphereMesh_m8fsh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_xdfjv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1

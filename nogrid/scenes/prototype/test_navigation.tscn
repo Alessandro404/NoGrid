@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmf4vn84lr1pu"]
+
+[ext_resource type="PackedScene" uid="uid://brsrx7x43lwi5" path="res://prototype_character_01.tscn" id="1_m5vyx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vdmgr"]
+sky_horizon_color = Color(0.64625, 0.655657, 0.670833, 1)
+ground_bottom_color = Color(0.2, 0.168627, 0.133333, 1)
+ground_horizon_color = Color(0.64625, 0.655657, 0.670833, 1)
+
+[sub_resource type="Sky" id="Sky_btptj"]
+sky_material = SubResource("ProceduralSkyMaterial_vdmgr")
+
+[sub_resource type="Environment" id="Environment_rk287"]
+background_mode = 2
+sky = SubResource("Sky_btptj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2axf3"]
+vertices = PackedVector3Array(-37.304, 0.7, -38.03, -37.304, 0.7, 37.97, 37.196, 0.7, 37.97, 37.196, 0.7, -38.03)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294967041
+cell_height = 0.1
+agent_height = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_pw3c0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acjr1"]
+
+[node name="TestNavigation" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rk287")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(0.357703, 0, 0, 0, 0.357703, 0, 0, 0, 0.357703, 0, -0.5, 0)
+navigation_mesh = SubResource("NavigationMesh_2axf3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(75.608, 0, 0, 0, 1, 0, 0, 0, 77.06, 0, 0, 0)
+mesh = SubResource("BoxMesh_pw3c0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_acjr1")
+
+[node name="PrototypeCharacter01" parent="." instance=ExtResource("1_m5vyx")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.772734, 0.634731, 0, -0.634731, 0.772734, 0, 12.41, 16.174)
