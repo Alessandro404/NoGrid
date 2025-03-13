@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://hbvc1lxekuv0"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_il1mn"]
+vertices = PackedVector3Array(-24.5, 0.25, -24.5, -24.5, 0.25, 24.5, 24.5, 0.25, 24.5, 24.5, 0.25, -24.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+cell_height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_cu2wb"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cu2wb"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="TestBehaviourTreeSandbox" type="Node3D"]
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Terrain"]
+transform = Transform3D(1.00481, 0, 0, 0, 1.00481, 0, 0, 0, 1.00481, 0, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_il1mn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/NavigationRegion3D"]
+transform = Transform3D(50, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_cu2wb")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Terrain/NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_cu2wb")
+
+[node name="TestAgents" type="Node3D" parent="."]
