@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BTBlackboard" load_steps=2 format=3 uid="uid://cuspr8jv17vdo"]
+
+[ext_resource type="Script" uid="uid://cu6wom7k18cst" path="res://classes/behaviour_tree/bt_blackboard.gd" id="1_dkj23"]
+
+[resource]
+script = ExtResource("1_dkj23")
+dict = {}
+health = 0

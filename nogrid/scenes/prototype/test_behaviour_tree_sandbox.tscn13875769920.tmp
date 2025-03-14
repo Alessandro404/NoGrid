@@ -1,22 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://hbvc1lxekuv0"]
+[gd_scene load_steps=12 format=3 uid="uid://hbvc1lxekuv0"]
 
 [ext_resource type="Script" uid="uid://ba546bsnjboe6" path="res://classes/behaviour_tree/character_controller.gd" id="1_vkyhn"]
 [ext_resource type="Script" uid="uid://binycm0cc2emg" path="res://classes/behaviour_tree/bt_root.gd" id="2_y1118"]
 [ext_resource type="Resource" uid="uid://cuspr8jv17vdo" path="res://classes/behaviour_tree/bt_blackboard.tres" id="3_y1118"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y1118"]
-sky_horizon_color = Color(0.64625, 0.655657, 0.670833, 1)
-ground_bottom_color = Color(0.2, 0.168627, 0.133333, 1)
-ground_horizon_color = Color(0.64625, 0.655657, 0.670833, 1)
-
-[sub_resource type="Sky" id="Sky_btptj"]
-sky_material = SubResource("ProceduralSkyMaterial_y1118")
-
-[sub_resource type="Environment" id="Environment_1bfci"]
-background_mode = 2
-sky = SubResource("Sky_btptj")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="Script" uid="uid://cu6wom7k18cst" path="res://classes/behaviour_tree/bt_blackboard.gd" id="4_1bfci"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_il1mn"]
 vertices = PackedVector3Array(-24.5, 0.15, -24.5, -24.5, 0.15, 24.5, 24.5, 0.15, 24.5, 24.5, 0.15, -24.5)
@@ -42,17 +29,14 @@ height = 0.5
 height = 0.5
 radius = 1.0
 
+[sub_resource type="Resource" id="Resource_tfw27"]
+script = ExtResource("4_1bfci")
+dict = {}
+health = 0
+food = 100
+metadata/_custom_type_script = "uid://cu6wom7k18cst"
+
 [node name="TestBehaviourTreeSandbox" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.88804, 0.136163, -0.43914, 0, 0.955139, 0.296158, 0.459766, 0.263001, -0.848202, 0, 10.8246, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1bfci")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.633934, 0.773387, 0, -0.773387, 0.633934, 0, 15.8761, 27.1786)
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -78,9 +62,6 @@ health = 12
 food = 100
 metadata/_edit_group_ = true
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="TestAgents/TestAgent"]
-debug_enabled = true
-
 [node name="BehaviourTreeRoot" type="Node" parent="TestAgents/TestAgent" node_paths=PackedStringArray("character_controller")]
 script = ExtResource("2_y1118")
 character_controller = NodePath("..")
@@ -91,5 +72,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("CylinderMesh_il1mn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestAgents/TestAgent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_cu2wb")
+
+[node name="TestAgent2" type="CharacterBody3D" parent="TestAgents"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6381, 0, 0)
+script = ExtResource("1_vkyhn")
+health = 22
+food = 100
+metadata/_edit_group_ = true
+
+[node name="BehaviourTreeRoot" type="Node" parent="TestAgents/TestAgent2" node_paths=PackedStringArray("character_controller")]
+script = ExtResource("2_y1118")
+character_controller = NodePath("..")
+blackboard_template = SubResource("Resource_tfw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestAgents/TestAgent2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_il1mn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestAgents/TestAgent2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_cu2wb")
