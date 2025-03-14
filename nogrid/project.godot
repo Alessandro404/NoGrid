@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="NoGrid"
-run/main_scene="res://scenes/prototype/test_navigation.tscn"
+run/main_scene="uid://hbvc1lxekuv0"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://classes/behaviour_tree/": "green"
+}
 
 [input]
 

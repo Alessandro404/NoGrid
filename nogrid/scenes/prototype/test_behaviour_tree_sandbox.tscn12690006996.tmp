@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://hbvc1lxekuv0"]
+[gd_scene load_steps=15 format=3 uid="uid://hbvc1lxekuv0"]
 
 [ext_resource type="Script" uid="uid://ba546bsnjboe6" path="res://classes/behaviour_tree/character_controller.gd" id="1_vkyhn"]
 [ext_resource type="Script" uid="uid://binycm0cc2emg" path="res://classes/behaviour_tree/bt_root.gd" id="2_y1118"]
-[ext_resource type="Resource" uid="uid://cuspr8jv17vdo" path="res://classes/behaviour_tree/bt_blackboard.tres" id="3_y1118"]
+[ext_resource type="Script" uid="uid://cu6wom7k18cst" path="res://classes/behaviour_tree/bt_blackboard.gd" id="3_y1118"]
 [ext_resource type="Script" uid="uid://ld8g5j14mqha" path="res://classes/behaviour_tree/BTLeafMoveRandom.gd" id="4_1bfci"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y1118"]
@@ -29,6 +29,10 @@ cell_height = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cu2wb"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Resource" id="Resource_1bfci"]
+script = ExtResource("3_y1118")
+metadata/_custom_type_script = "uid://cu6wom7k18cst"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il1mn"]
 albedo_color = Color(0.603922, 0.160784, 0.45098, 1)
@@ -81,10 +85,10 @@ metadata/_edit_group_ = true
 
 [node name="BehaviourTreeRoot" type="Node" parent="TestAgents/TestAgent" node_paths=PackedStringArray("character_agent")]
 script = ExtResource("2_y1118")
-blackboard_template = ExtResource("3_y1118")
+blackboard_template = SubResource("Resource_1bfci")
 character_agent = NodePath("..")
 
-[node name="BTLeafMoveRandom" type="Node" parent="TestAgents/TestAgent/BehaviourTreeRoot"]
+[node name="BTLeaf" type="Node" parent="TestAgents/TestAgent/BehaviourTreeRoot"]
 script = ExtResource("4_1bfci")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="TestAgents/TestAgent"]
