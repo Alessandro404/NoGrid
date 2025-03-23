@@ -12,6 +12,8 @@ var is_stopped: bool = false
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	nav_agent.set_path_desired_distance(2.0)
 
 func _physics_process(delta):
 	var target_pos = nav_agent.get_next_path_position()

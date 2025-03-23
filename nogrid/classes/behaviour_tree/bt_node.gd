@@ -1,8 +1,8 @@
 class_name BTNode
 extends Node
 
-enum {
-	STARTING,
+enum Status {
+	READY,
 	RUNNING,
 	CANCELLED,
 	FAILED,
@@ -14,17 +14,12 @@ enum {
 
 var blackboard: BTBlackboard
 var control = null
-var guard = null
-var status = STARTING
-var is_root : bool = false
+var status = Status.READY
 
 
 func _ready() -> void:
 	setup_parent()
 	
-	
-func _tick() -> void:
-	pass
 
 func setup_parent():
 	#Attendi un frame per assicurare che tutto l'albero sia inizializzato
@@ -41,3 +36,15 @@ func get_bt_children() -> Array[BTNode]:
 		if child is BTNode:
 			children.append(child)
 	return children
+
+func _start():
+	status = Status.RUNNING
+
+func _tick():
+	pass
+
+func _cancel():
+	pass
+
+func _reset():
+	status = Status.READY
