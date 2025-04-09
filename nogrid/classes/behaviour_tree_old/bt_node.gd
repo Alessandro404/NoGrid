@@ -1,4 +1,4 @@
-class_name BTNode
+class_name BTNodeOLD
 extends Node
 
 enum Status {

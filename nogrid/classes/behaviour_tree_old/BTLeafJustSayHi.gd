@@ -1,18 +1,18 @@
-class_name BTLeafJustSayOhNo
-extends BTNode
+class_name BTLeafJustSayHiOLD
+extends BTNodeOLD
 
-var said_oh_no: bool = false
+var said_hi: bool = false
 
 func tick():
 	say_hi()
-	if said_oh_no:
+	if said_hi:
 		status = Status.SUCCEEDED
 
 func say_hi():
 	await get_tree().create_timer(randi_range(1,3)).timeout
-	print("Oh No!")
-	said_oh_no = true
+	print("hi!")
+	said_hi = true
 
 func _reset():
 	super._reset()
-	said_oh_no = false
+	said_hi = false

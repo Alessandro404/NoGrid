@@ -1,5 +1,5 @@
-class_name BTLeafMoveRandom
-extends BTNode
+class_name BTLeafMoveRandomOLD
+extends BTNodeOLD
 
 var in_movement: bool = false
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://hbvc1lxekuv0"]
 
-[ext_resource type="Script" uid="uid://ba546bsnjboe6" path="res://classes/behaviour_tree/character_controller.gd" id="1_vkyhn"]
-[ext_resource type="Script" uid="uid://binycm0cc2emg" path="res://classes/behaviour_tree/bt_root.gd" id="2_y1118"]
-[ext_resource type="Script" uid="uid://cu6wom7k18cst" path="res://classes/behaviour_tree/bt_blackboard.gd" id="3_1bfci"]
-[ext_resource type="Script" uid="uid://4foljs6rkg8u" path="res://classes/behaviour_tree/BTLeafJustSayHi.gd" id="5_tfw27"]
-[ext_resource type="Script" uid="uid://deot7f8k07u16" path="res://classes/behaviour_tree/BTLeafJustSayOhNo.gd" id="5_y64gr"]
+[ext_resource type="Script" uid="uid://ba546bsnjboe6" path="res://classes/Behviour_tree/character_controller.gd" id="1_vkyhn"]
+[ext_resource type="Script" uid="uid://binycm0cc2emg" path="res://classes/behaviour_tree_old/bt_root.gd" id="2_y1118"]
+[ext_resource type="Script" uid="uid://cu6wom7k18cst" path="res://classes/Behviour_tree/bt_blackboard.gd" id="3_1bfci"]
+[ext_resource type="Script" uid="uid://4foljs6rkg8u" path="res://classes/behaviour_tree_old/BTLeafJustSayHi.gd" id="5_tfw27"]
+[ext_resource type="Script" uid="uid://deot7f8k07u16" path="res://classes/behaviour_tree_old/BTLeafJustSayOhNo.gd" id="5_y64gr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y1118"]
 sky_horizon_color = Color(0.64625, 0.655657, 0.670833, 1)

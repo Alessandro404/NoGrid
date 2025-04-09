@@ -1,5 +1,5 @@
-class_name BTRoot
-extends BTNode
+class_name BTRootOLD
+extends BTNodeOLD
 
 ##Assegna la risorsa blackboard
 @export var blackboard_template: BTBlackboard
